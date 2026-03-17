@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import { db } from '../../db/index.ts'
 import { wallets, usersToWallets, categories, categoriesToWallets } from '../../db/schema.ts'
-import { authMiddleware } from '../../middleware/auth'
+import { authMiddleware } from '../../middleware/auth.ts'
 import { StatusCodes } from 'http-status-codes'
 import { and, eq, sql } from 'drizzle-orm'
 import { checks } from '../../db/schema.ts'

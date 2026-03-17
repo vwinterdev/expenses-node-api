@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import { eq } from 'drizzle-orm'
 import { db } from '../../db/index.ts'
 import { users } from '../../db/schema.ts'
-import { ACCESS_EXP, REFRESH_EXP, SALT_ROUNDS } from './auth.consts'
+import { ACCESS_EXP, REFRESH_EXP, SALT_ROUNDS } from './auth.consts.ts'
 
 const generateAccessToken = (userId: number) => {
   return sign(
