@@ -1,5 +1,6 @@
 {
   "name": "hono",
+  "type": "module",
   "scripts": {
     "dev": "tsx watch src/app.ts",
     "build": "tsup src/index.ts --format cjs --out-dir dist --no-splitting",
