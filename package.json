@@ -2,13 +2,13 @@
   "name": "hono",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch api/app.ts",
-    "build": "tsup api/index.ts --format cjs --out-dir dist --no-splitting",
+    "dev": "tsx watch src/app.ts",
+    "build": "tsup src/index.ts --format cjs --out-dir dist --no-splitting",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
-    "lint": "eslint api",
-    "lint:fix": "eslint api --fix"
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
   },
   "dependencies": {
     "@hono/node-server": "^1.19.11",
