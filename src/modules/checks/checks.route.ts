@@ -1,9 +1,9 @@
 import { Hono } from 'hono'
 import { and, eq } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
-import { db } from '../../db'
-import { checks, usersToWallets, categoriesToWallets } from '../../db/schema'
-import { authMiddleware } from '../../middleware/auth'
+import { db } from '../../db/index.ts'
+import { checks, usersToWallets, categoriesToWallets } from '../../db/schema.ts'
+import { authMiddleware } from '../../middleware/auth.ts'
 
 type ChecksVariables = { Variables: { userId: number } }
 

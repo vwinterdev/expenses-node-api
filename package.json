@@ -1,9 +1,8 @@
 {
   "name": "hono",
-  "type": "module",
   "scripts": {
     "dev": "tsx watch src/app.ts",
-    "build": "tsc",
+    "build": "tsup src/index.ts --format cjs --out-dir dist --no-splitting",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
@@ -23,6 +22,7 @@
     "@types/bcrypt": "^6.0.0",
     "@types/node": "^20.11.17",
     "drizzle-kit": "^0.31.9",
+    "tsup": "^8.5.1",
     "tsx": "^4.7.1",
     "typescript": "^5.8.3"
   }

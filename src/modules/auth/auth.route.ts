@@ -1,8 +1,8 @@
 import { Hono } from 'hono'
 import { setCookie, getCookie, deleteCookie } from 'hono/cookie'
 import { StatusCodes } from 'http-status-codes'
-import * as authService from './auth.service'
-import { TOKEN_CONFIG } from './auth.consts'
+import * as authService from './auth.service.ts'
+import { TOKEN_CONFIG } from './auth.consts.ts'
 
 const auth = new Hono()
 

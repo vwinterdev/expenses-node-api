@@ -1,9 +1,9 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
-import auth from './modules/auth/auth.route'
-import wallet from './modules/wallet/wallet.route'
-import categories from './modules/categories/categories.route'
-import checks from './modules/checks/checks.route'
+import auth from './modules/auth/auth.route.ts'
+import wallet from './modules/wallet/wallet.route.ts'
+import categories from './modules/categories/categories.route.ts'
+import checks from './modules/checks/checks.route.ts'
 
 const app = new Hono()
 

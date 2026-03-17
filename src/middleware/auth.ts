@@ -1,7 +1,7 @@
 import { createMiddleware } from 'hono/factory'
 import { getCookie } from 'hono/cookie'
 import { verify } from 'hono/jwt'
-import { TOKEN_CONFIG } from '../modules/auth/auth.consts'
+import { TOKEN_CONFIG } from '../modules/auth/auth.consts.ts'
 
 type AuthVariables = {
   userId: number

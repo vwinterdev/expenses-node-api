@@ -1,8 +1,8 @@
 import { sign, verify } from 'hono/jwt'
 import bcrypt from 'bcrypt'
 import { eq } from 'drizzle-orm'
-import { db } from '../../db'
-import { users } from '../../db/schema'
+import { db } from '../../db/index.ts'
+import { users } from '../../db/schema.ts'
 import { ACCESS_EXP, REFRESH_EXP, SALT_ROUNDS } from './auth.consts'
 
 const generateAccessToken = (userId: number) => {
