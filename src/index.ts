@@ -12,6 +12,8 @@ app.use('*', cors({
   credentials: true,
 }))
 
+app.get('/', (c) => c.text('ok'))
+
 app.route('/api/auth', auth)
 app.route('/api/wallets', wallet)
 app.route('/api/categories', categories)
