@@ -9,8 +9,8 @@ import 'dotenv/config'
 const app = new Hono()
 
 app.use('*', cors({
-  origin: '*',
-  credentials: false,
+  origin: 'https://expenses-sand-alpha.vercel.app',
+  credentials: true,
 }))
 
 app.get('/', (c) => c.text('ok'))
