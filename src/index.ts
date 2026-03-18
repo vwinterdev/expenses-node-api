@@ -9,8 +9,8 @@ import 'dotenv/config'
 const app = new Hono()
 
 app.use('*', cors({
-  origin: process.env.CLIENT_URL ?? 'http://localhost:5173',
-  credentials: true,
+  origin: '*',
+  credentials: false,
 }))
 
 app.get('/', (c) => c.text('ok'))
