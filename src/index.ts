@@ -4,6 +4,7 @@ import auth from './modules/auth/auth.route.ts'
 import wallet from './modules/wallet/wallet.route.ts'
 import categories from './modules/categories/categories.route.ts'
 import checks from './modules/checks/checks.route.ts'
+import 'dotenv/config'
 
 const app = new Hono()
 
