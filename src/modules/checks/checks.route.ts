@@ -1,42 +1,24 @@
-import { Hono } from 'hono'
 import { and, eq } from 'drizzle-orm'
+import { Hono } from 'hono'
 import { StatusCodes } from 'http-status-codes'
-import { db } from '../../db/index.ts'
-import { checks, usersToWallets, categoriesToWallets } from '../../db/schema.ts'
-import { authMiddleware } from '../../middleware/auth.ts'
+import { db } from '../../db/index'
+import { checks } from '../../db/schema/checks'
+import { categories } from '../../db/schema/categories'
+import { usersToWallets } from '../../db/schema/users'
+import { authMiddleware } from '../../middleware/auth'
+import { createRouter } from '@/lib/create-router'
+import * as RepoWallet from '@/modules/wallet/wallet.repository.ts'
+import * as RepoChecks from '@/modules/checks/checks.repository.ts'
 
-type ChecksVariables = { Variables: { userId: number } }
+const checks = createRouter()
 
-const router = new Hono<ChecksVariables>()
-
-router.use('*', authMiddleware)
-
-router.post('/create', async (c) => {
+checks.post('/create', async (c) => {
   const userId = c.get('userId')
   const { type, amount, description, categoryId, walletId } = await c.req.json()
-
-  // check wallet belongs to user
-  const [walletAccess] = await db
-    .select()
-    .from(usersToWallets)
-    .where(and(eq(usersToWallets.userId, userId), eq(usersToWallets.walletId, Number(walletId))))
-
-  if (!walletAccess) return c.json({ error: 'Wallet not found' }, StatusCodes.NOT_FOUND)
-
-  // check category belongs to wallet
-  const [categoryAccess] = await db
-    .select()
-    .from(categoriesToWallets)
-    .where(and(eq(categoriesToWallets.walletId, Number(walletId)), eq(categoriesToWallets.categoryId, Number(categoryId))))
-
-  if (!categoryAccess) return c.json({ error: 'Category not found in this wallet' }, StatusCodes.NOT_FOUND)
-
-  const [newCheck] = await db
-    .insert(checks)
-    .values({ type, amount: String(amount), description, categoryId: Number(categoryId), walletId: Number(walletId) })
-    .returning()
-
+  const access = await RepoWallet.checkWalletAccess(userId, walletId)
+  if (!access) { return c.json({ error: 'You do not have access to this wallet' }, StatusCodes.FORBIDDEN) }
+  const newCheck = await RepoChecks.createCheckAndUpdateWalletBalance({ type, amount, description, categoryId, walletId, userId })
   return c.json(newCheck, StatusCodes.CREATED)
 })
 
-export default router
+export default checks

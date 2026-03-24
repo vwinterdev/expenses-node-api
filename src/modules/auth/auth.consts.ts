@@ -1,8 +1,10 @@
+import { env } from '../../settings.ts'
+
 export const ACCESS_EXP = 60 * 15 // 15 минут
 export const REFRESH_EXP = 60 * 60 * 24 * 7 // 7 дней
 export const SALT_ROUNDS = 10
 
-const isProduction = process.env.NODE_ENV === 'production'
+const isProduction = env.nodeEnv === 'production'
 
 export const TOKEN_CONFIG = {
   access: {
