@@ -11,7 +11,7 @@ import statistics from './modules/statistics/statistic.route'
 const app = new Hono()
 
 app.use('*', cors({
-  origin: '*',
+  origin: 'https://expenses-sand-alpha.vercel.app',
   credentials: true,
 }))
 
